@@ -7,14 +7,16 @@
         mc:Ignorable="d"
         Title="Багатокритеріальна оптимізація"
         WindowStartupLocation="CenterScreen"
-        Height="600" 
-        Width="800">
+        Height="480" Width="768"
+        MinHeight="480" MinWidth="768">
 
     <Window.Resources>
 
         <Style TargetType="Button" x:Name="buttonStyleGray">
             <Setter Property="Background" Value="DimGray"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Width" Value="150"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -95,8 +97,37 @@
             <Setter Property="Margin" Value="5,0,0,0"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridColumnHeader}"
+               BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+            <Setter Property="Background" Value="DimGray" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0,1,1,1"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="EnableRowVirtualization" Value="False"/>
+            <Setter Property="EnableColumnVirtualization" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Background" Value="DimGray"/>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Style.Setters>
+                <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            </Style.Setters>
         </Style>
 
     </Window.Resources>
@@ -122,13 +153,40 @@
 
                         <TextBlock Text="Назва критерію" Grid.Row="0" Grid.Column="0"/>
                         <TextBlock Text="Ваговий коефіцієнт" Grid.Row="0" Grid.Column="1"/>
-                        <TextBox Width="140" Grid.Row="1" Grid.Column="0"
+                        <TextBox Name="txtCriteriaName"
+                                 Width="140" 
+                                 Grid.Row="1" Grid.Column="0"
                                  Margin="5"/>
-                        <TextBox Width="140" Grid.Row="1" Grid.Column="1"
+                        <TextBox Name="txtCriteriaWeight"
+                                 Width="140" 
+                                 Grid.Row="1" Grid.Column="1"
                                  Margin="5"/>
-                        <Button Content="Додати критерій" Grid.Row="1" Grid.Column="2" 
-                                Height="30"/>
+                        <Button Name="btnAddCriteria"
+                                Content="Додати критерій" 
+                                Grid.Row="1" Grid.Column="2" 
+                                Height="30" Click="btnAddCriteria_Click"/>
                     </Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <DataGrid Name="dataGridCriteria"
+                                  ColumnWidth="*"
+                                  Margin="15,10,5,50"
+                                  Width="300"
+                                  MaxHeight="290">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Критерій" IsReadOnly="True" Binding="{Binding Path=Name}"/>
+                                <DataGridTextColumn Header="Коефіцієнт" IsReadOnly="True" Binding="{Binding Path=Weight}"/>
+                            </DataGrid.Columns>
+                            <DataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#96C5F7"/>
+                            </DataGrid.Resources>
+                        </DataGrid>
+                        <Button Name="btnDeleteCriteria"
+                                Content="Видалити вибрані"
+                                Height="30"
+                                VerticalAlignment="Top"
+                                Margin="15,10,0,0"
+                                Click="btnDeleteCriteria_Click"/>
+                    </StackPanel>
                 </StackPanel>
             </TabItem>
 
