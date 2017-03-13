@@ -1,0 +1,2 @@
+# MulticriteriaOptimization
+Decision making program.
