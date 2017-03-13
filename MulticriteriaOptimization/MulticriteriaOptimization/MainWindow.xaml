@@ -5,8 +5,157 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MulticriteriaOptimization"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Багатокритеріальна оптимізація"
+        WindowStartupLocation="CenterScreen"
+        Height="600" 
+        Width="800">
+
+    <Window.Resources>
+
+        <Style TargetType="Button" x:Name="buttonStyleGray">
+            <Setter Property="Background" Value="DimGray"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="Black" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Duration="0:0:0.050" To="White" Storyboard.TargetProperty="(Background).Color"/>
+                                <ColorAnimation Duration="0:0:0.050" To="Black" Storyboard.TargetProperty="(Foreground).Color"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Duration="0:0:0.200" To="DimGray" Storyboard.TargetProperty="(Background).Color"/>
+                                <ColorAnimation Duration="0:0:0.200" To="White" Storyboard.TargetProperty="(Foreground).Color"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TabItem" x:Name="tabItemStyle">
+            <Setter Property="Background" Value="#96C5F7"/>
+            <Setter Property="Width" Value="140"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,0,0,7"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderThickness" Value="1,1,0,1"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid Name="Panel">
+                            <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Panel" Property="Background" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Panel" Property="Background" Value="#96C5F7" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Name="textBlockStyle">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Name="textBoxStyle">
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True"
+               Background="DimGray">
+
+        <TabControl TabStripPlacement="Left"
+                    Margin="5,5,5,5">
+
+            <TabItem Header="Критерії">
+                <StackPanel Orientation="Vertical">
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="170"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Назва критерію" Grid.Row="0" Grid.Column="0"/>
+                        <TextBlock Text="Ваговий коефіцієнт" Grid.Row="0" Grid.Column="1"/>
+                        <TextBox Width="140" Grid.Row="1" Grid.Column="0"
+                                 Margin="5"/>
+                        <TextBox Width="140" Grid.Row="1" Grid.Column="1"
+                                 Margin="5"/>
+                        <Button Content="Додати критерій" Grid.Row="1" Grid.Column="2" 
+                                Height="30"/>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Альтернативи">
+                <DataGrid/>
+            </TabItem>
+
+            <TabItem Header="Результати">
+                <DockPanel LastChildFill="True">
+                    <StackPanel DockPanel.Dock="Right"
+                                Orientation="Vertical">
+                        <Button Content="Мультиплікативна згортка"/>
+                    </StackPanel>
+                    <DockPanel DockPanel.Dock="Left"
+                               LastChildFill="True">
+                        <StackPanel DockPanel.Dock="Top"
+                                    Orientation="Vertical">
+                            <TextBlock Text="Найкращі альтернативи:"/>
+                            <DataGrid/>
+                        </StackPanel>
+                        <TextBox/>
+                    </DockPanel>
+                </DockPanel>
+            </TabItem>
+
+        </TabControl>
+
+    </DockPanel>
+
 </Window>

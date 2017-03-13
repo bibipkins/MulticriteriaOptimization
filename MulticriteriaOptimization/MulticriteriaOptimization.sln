@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MulticriteriaOptimization", "MulticriteriaOptimization\MulticriteriaOptimization.csproj", "{4589E84C-07DA-47F7-888D-D9C08F2EB5F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MulticriteriaOptimization.Model", "MulticriteriaOptimization.Model\MulticriteriaOptimization.Model.csproj", "{203816E2-675E-4BD1-AFC1-12E71B2DEC99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MulticriteriaOptimization.ViewModel", "MulticriteriaOptimization.ViewModel\MulticriteriaOptimization.ViewModel.csproj", "{307E4C79-EC3F-4823-9C69-9D1A6EF10FA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4589E84C-07DA-47F7-888D-D9C08F2EB5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4589E84C-07DA-47F7-888D-D9C08F2EB5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4589E84C-07DA-47F7-888D-D9C08F2EB5F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{203816E2-675E-4BD1-AFC1-12E71B2DEC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203816E2-675E-4BD1-AFC1-12E71B2DEC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203816E2-675E-4BD1-AFC1-12E71B2DEC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203816E2-675E-4BD1-AFC1-12E71B2DEC99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{307E4C79-EC3F-4823-9C69-9D1A6EF10FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{307E4C79-EC3F-4823-9C69-9D1A6EF10FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{307E4C79-EC3F-4823-9C69-9D1A6EF10FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{307E4C79-EC3F-4823-9C69-9D1A6EF10FA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
